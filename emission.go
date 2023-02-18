@@ -79,7 +79,7 @@ func do_pwr(tt string, args []string) {
 		bail("no data for " + tt + " available")
 	}
 
-	println("valve:", tt, "(power valve)")
+	println("valve:", tt)
 	println()
 	println("value                     measured   nominal/max.")
 	prpr("anode voltage", "V", "V", ht, nht, ht-nht)

@@ -22,12 +22,12 @@ var valve_info = []struct {
 	max_curr  float64
 	max_anode float64
 }{
-	{"EL84", -14, 12, 0.065, 300},
-	{"EL34", -36, 25, 0.150, 800},
-	{"ECC81", -2, 2.5, 0.015, 300}, // -2?
+	{"ECC81", -2, 2.5, 0.015, 300},
 	{"ECC82", -8.5, 2.75, 0.020, 300},
 	{"ECC83", -2, 1, 0.008, 300},
-	{"EF86", 1.3, 1, 0.006, 300},
+	{"EF86", -2, 1, 0.006, 300},
+	{"EL34", -7.3, 25, 0.150, 800},
+	{"EL84", -13.5, 12, 0.065, 300},
 }
 
 func main() {
@@ -85,7 +85,7 @@ func do_pwr(tt string, args []string) {
 	prpr("anode voltage", "V", "V", ht, nht, ht-nht)
 	if nb != 0 {
 		foo := nb / nnb
-		if foo > 1.1 || foo < 0.9 {
+		if foo > 1.5 || foo < 0.66 {
 			foo = 1
 		} else {
 			foo = 0

@@ -1,0 +1,56 @@
+.TH emission 1 17-FEB-2023 "Kozmix Go"
+
+.SH NAME
+emission \- do calculations on measurements from the author's valve tester
+
+.SH SYNOPSIS
+.B emission
+<valve type> ht=... nb=... curr=...
+
+.SH DESCRIPTION
+.B emission
+processes the test results from the author's valve tester. The command
+line arguments are:
+
+.TP
+designation
+the valve type (EL84, ECC83, etc; case-insensitive)
+.TP
+ht=...
+HT (anode) voltage as measured from the red socket, in volts
+.TP
+curr=...
+cathode current as measured from the green socket (where 1mV measured equals 1mA)
+.TP
+nb=... (optional)
+negative bias voltage as measured from the blue socket and set with the knob to the left of it
+
+.B emission
+will then calculate power dissipation, and check both power
+dissipation and cathode current against maximum allowed values.
+
+.SH EXAMPLES
+
+.EX
+$ emission pwr el84 curr=48m ht=297 nb=14
+valve: EL84 (power valve)
+
+value                     measured   nominal/max.
+anode voltage        V =      297V      300V
+negative bias        V =      -14V      -14V
+cathode current      I =      48mA      65mA
+dissipation          P =   14.256W       12W  WARNING
+
+.EE
+
+
+.SH SEE ALSO
+.BR valve (1)
+
+.SH BUGS
+.B emission
+only knows about Philips/Mullard type valve designations.
+
+.SH AUTHOR
+svm
+

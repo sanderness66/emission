@@ -5,7 +5,7 @@ emission \- do calculations on measurements from the author's valve tester
 
 .SH SYNOPSIS
 .B emission
-<valve type> ht=... nb=... curr=...
+<valve type> ht=... curr=... [nb=...]
 
 .SH DESCRIPTION
 .B emission
@@ -13,21 +13,26 @@ processes the test results from the author's valve tester. The command
 line arguments are:
 
 .TP
-designation
-the valve type (EL84, ECC83, etc; case-insensitive)
+.B designation
+The valve type (EL84, ECC83, etc; case-insensitive).
 .TP
-ht=...
-HT (anode) voltage as measured from the red socket, in volts
+.B ht=...
+HT (anode) voltage as measured from the red socket, in volts. This
+will be around 150V for preamp valves and around 300V for power
+valves.
 .TP
-curr=...
-cathode current as measured from the green socket (where 1mV measured equals 1mA)
+.B curr=...
+Cathode current as measured from the green socket (where 1mV measured equals 1mA).
 .TP
-nb=... (optional)
-negative bias voltage as measured from the blue socket and set with the knob to the left of it
+.B nb=...
+Negative bias voltage as measured from the blue socket and set with
+the knob to the left of it (optional).
 
+.P
 .B emission
-will then calculate power dissipation, and check both power
-dissipation and cathode current against maximum allowed values.
+will then calculate power dissipation, and emit warnings if any
+measured values exceed maximum values (or in case of negative bias,
+are more than 10% off the recommended testing value).
 
 .SH EXAMPLES
 
@@ -49,7 +54,8 @@ dissipation          P =   14.256W       12W  WARNING
 
 .SH BUGS
 .B emission
-only knows about Philips/Mullard type valve designations.
+only has data on a limited range of valve types built in, and only
+knows them by their Philips/Mullard designations.
 
 .SH AUTHOR
 svm

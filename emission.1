@@ -22,7 +22,8 @@ will be around 150V for preamp valves and around 300V for power
 valves.
 .TP
 .B curr=...
-Cathode current as measured from the green socket (where 1mV measured equals 1mA).
+Cathode current as measured from the green socket (where 1mV measured
+equals 1mA of current).
 .TP
 .B nb=...
 Negative bias voltage as measured from the blue socket and set with
@@ -37,12 +38,12 @@ are more than 50% off the recommended testing value).
 .SH EXAMPLES
 
 .EX
-$ emission pwr el84 curr=48m ht=297 nb=14
-valve: EL84 (power valve)
+$ emission el84 curr=48m ht=297 nb=14
+valve: EL84
 
 value                     measured   nominal/max.
 anode voltage        V =      297V      300V
-negative bias        V =      -14V      -14V
+negative bias        V =      -14V    -13.5V
 cathode current      I =      48mA      65mA
 dissipation          P =   14.256W       12W  WARNING
 
@@ -54,8 +55,8 @@ dissipation          P =   14.256W       12W  WARNING
 
 .SH BUGS
 .B emission
-only has data on a limited range of valve types built in, and only
-knows them by their Philips/Mullard designations.
+only has data on a small range of valve types built in, and only knows
+them by their European designations.
 
 .SH AUTHOR
 svm

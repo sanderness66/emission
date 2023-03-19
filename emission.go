@@ -9,7 +9,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/dsnet/golib/unitconv"
+	"github.com/dustin/go-humanize"
 	"math"
 	"os"
 	"strings"
@@ -46,12 +46,12 @@ func do_pwr(tt string, args []string) {
 		xx := strings.Split(av, "=")
 		switch xx[0] {
 		case "ht":
-			ht, _ = unitconv.ParsePrefix(xx[1], unitconv.AutoParse)
+			ht, _, _ = humanize.ParseSI(xx[1])
 		case "nb":
-			nb, _ = unitconv.ParsePrefix(xx[1], unitconv.AutoParse)
+			nb, _, _ = humanize.ParseSI(xx[1])
 			nb = -(math.Abs(nb))
 		case "curr":
-			curr, _ = unitconv.ParsePrefix(xx[1], unitconv.AutoParse)
+			curr, _, _ = humanize.ParseSI(xx[1])
 		}
 	}
 	if ht == 0 {
@@ -109,9 +109,9 @@ func prpr(label string, abbrev string, unit string, val float64, nom float64, te
 	// should limit significant figures rather than digits after
 	// decimal point, but well...
 	val = math.Round(val*1000) / 1000
-	vval := unitconv.FormatPrefix(val, unitconv.SI, -1)
+	vval := humanize.SIWithDigits(val, 2, unit)
 	nom = math.Round(nom*1000) / 1000
-	nnom := unitconv.FormatPrefix(nom, unitconv.SI, -1)
+	nnom := humanize.SIWithDigits(val, 2, unit)
 
 	var msg string
 	if test > 0 {
@@ -120,5 +120,5 @@ func prpr(label string, abbrev string, unit string, val float64, nom float64, te
 		msg = ""
 	}
 
-	fmt.Printf("%-20s %s = %8s%s %8s%s%s\n", label, abbrev, vval, unit, nnom, unit, msg)
+	fmt.Printf("%-20s %s = %8s %8s%s\n", label, abbrev, vval, nnom, msg)
 }

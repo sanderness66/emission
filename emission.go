@@ -111,7 +111,7 @@ func prpr(label string, abbrev string, unit string, val float64, nom float64, te
 	val = math.Round(val*1000) / 1000
 	vval := humanize.SIWithDigits(val, 2, unit)
 	nom = math.Round(nom*1000) / 1000
-	nnom := humanize.SIWithDigits(val, 2, unit)
+	nnom := humanize.SIWithDigits(nom, 2, unit)
 
 	var msg string
 	if test > 0 {

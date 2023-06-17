@@ -31,7 +31,8 @@ the knob to the left of it (optional).
 
 .P
 .B emission
-will then calculate power dissipation, and emit warnings if any
+will then calculate power dissipation (both at 100% for cathode biased
+valves and at 70% for fixed biased valve), and emit warnings if any
 measured values exceed maximum values (or in case of negative bias,
 are more than 50% off the recommended testing value).
 
@@ -41,11 +42,12 @@ are more than 50% off the recommended testing value).
 $ emission el84 curr=48m ht=297 nb=14
 valve: EL84
 
-value                     measured   nominal/max.
-anode voltage        V =      297V      300V
-negative bias        V =      -14V    -13.5V
-cathode current      I =      48mA      65mA
-dissipation          P =   14.256W       12W  WARNING
+value                        measured  nominal/max.
+anode voltage            V =    297 V    300 V
+negative bias            V =    -14 V  -13.5 V
+cathode current          I =    48 mA    65 mA
+dissipation cathode bias P =  14.25 W     12 W  WARNING
+dissipation fixed bias   P =  14.25 W    8.4 W  WARNING
 
 .EE
 

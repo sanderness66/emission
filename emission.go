@@ -81,7 +81,7 @@ func do_pwr(tt string, args []string) {
 
 	println("valve:", tt)
 	println()
-	println("value                     measured   nominal/max.")
+	println("value                        measured  nominal/max.")
 	prpr("anode voltage", "V", "V", ht, nht, ht-nht)
 	if nb != 0 {
 		foo := nb / nnb
@@ -94,7 +94,9 @@ func do_pwr(tt string, args []string) {
 	}
 	prpr("cathode current", "I", "A", curr, ncurr, curr-ncurr)
 	diss := ht * curr // p = i * v
-	prpr("dissipation", "P", "W", diss, ndiss, diss-ndiss)
+	prpr("dissipation cathode bias", "P", "W", diss, ndiss, diss-ndiss)
+	seventy := ndiss * 0.7 // 70% of max is recommended in pp
+	prpr("dissipation fixed bias", "P", "W", diss, seventy, diss-seventy)
 	println()
 }
 
@@ -120,5 +122,5 @@ func prpr(label string, abbrev string, unit string, val float64, nom float64, te
 		msg = ""
 	}
 
-	fmt.Printf("%-20s %s = %8s %8s%s\n", label, abbrev, vval, nnom, msg)
+	fmt.Printf("%-24s %s = %8s %8s%s\n", label, abbrev, vval, nnom, msg)
 }
